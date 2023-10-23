@@ -1,7 +1,7 @@
 #!/bin/bash 
 
-PERSON1=Ramesh
-PERSON2=Suresh
+PERSON1=Virat
+PERSON2=Rohit
 
 echo "Hello World, I am practicing Devops with AWS"
 echo "$PERSON1: Hi $PERSON2, Good Morning"
