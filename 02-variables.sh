@@ -1,3 +1,6 @@
+##declaring inside script
+##How to execute a command inside shell script and take the output(Interview Question)
+
 #!/bin/bash 
 DATE=$(date)
 
