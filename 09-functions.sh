@@ -1,5 +1,5 @@
 #!/bin/bash 
-
+#our program goal is to install mysql
 DATE=$(date +%F)
 SCRIPT_NAME=$0
 LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
@@ -16,17 +16,17 @@ VALIDATE(){
     fi
 }
 
-#our program goal is to install mysql
+
 USERID=$(id -u) # it will get the output and store into USERID 'id -u command it will only give user id'
 if [ $USERID -ne 0 ]
 then
    echo "ERROR:: Please run this script with root access"
    exit 1
-else
-   echo "INFO: you are root user"
+# else
+#    echo "INFO: you are root user"
 fi
 
-yum install mysql -y &&>>$LOGFILE
+yum install mysql -y &>>$LOGFILE
 #It is our responsibility again to check installation is success or not
 VALIDATE $? "Installing MySQL"
 
