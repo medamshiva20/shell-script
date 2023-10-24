@@ -16,7 +16,7 @@ else
   echo "INFO: you are root user"
 fi
 
-yum install mysqll -y
+yum install mysql -y
 
 if [ $? -ne 0 ] #$? this command will result like if it 0 means success and if it is 1 means failure
 then
