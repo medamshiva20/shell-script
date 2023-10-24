@@ -15,4 +15,4 @@ else
   echo "INFO: you are root user"
 fi
 
-yum insatll mysql -y
+yum install mysql -y
