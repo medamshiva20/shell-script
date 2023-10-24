@@ -11,9 +11,9 @@ USERID=$(id -u) # it will get the output and store into USERID 'id -u command it
 if [ $USERID -ne 0 ]
 then
   echo "ERROR:: Please run this script with root access"
-  exit 1 # it will stop the script execution further and can't move forward
+  exit 1 # it will stop the script execution and can't execute further or remaining script
 else
   echo "INFO: you are root user"
 fi
 
-yum install mysql -y
+yum install mysqll -y
