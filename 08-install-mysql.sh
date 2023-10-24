@@ -17,3 +17,11 @@ else
 fi
 
 yum install mysqll -y
+
+if [ $? -ne 0 ] #$? this command will result like if it 0 means success and if it is 1 means failure
+then
+ echo "Installation of mysql is error"
+ exit 1
+else
+ echo "Installation of mysql is success"
+ fi
