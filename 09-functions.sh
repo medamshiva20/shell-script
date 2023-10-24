@@ -26,10 +26,10 @@ else
    echo "INFO: you are root user"
 fi
 
-yum install mysql -y &&>>LOGFILE
+yum install mysql -y &&>>$LOGFILE
 #It is our responsibility again to check installation is success or not
 VALIDATE $? "Installing MySQL"
 
-yum install postfix -y &>>LOGFILE
+yum install postfix -y &>>$LOGFILE
 
 VALIDATE $? "Installing postfix"
