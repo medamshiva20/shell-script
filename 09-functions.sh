@@ -1,15 +1,16 @@
 #!/bin/bash 
 
 #our program goal is to install mysql
-USERID=$(id -u) # it will get the output and store into USERID 'id -u command it will only user id'
-#This function should validate the previous command and inform user it is success or failure
+USERID=$(id -u) # it will get the output and store into USERID 'id -u command it will only give user id'
+#This function should validate the previous command status and inform to user it is success or failure
 VALIDATE(){
-    if [ $? -ne 0 ]
+    #$1 --> It will receive the argument1
+    if [ $1 -ne 0 ]
     then
-     echo "Installation ... FAILURE"
+     echo "$2 ... FAILURE"
      exit 1
     else
-     echo "Installation ... SUCCESS"
+     echo "$2 ... SUCCESS"
     fi
 }
 
@@ -22,9 +23,9 @@ else
 fi
 
 yum install mysql -y
-
-VALIDATE $?
+#It is our responsibility again to check installation is success or not
+VALIDATE $? "Installing MySQL"
 
 yum install postfix -y 
 
-VALIDATE $?
+VALIDATE $? "Installing postfix"
