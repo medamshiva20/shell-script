@@ -7,7 +7,7 @@
 # if installed just print package is alredy installed, it should not run install command
 
 #!/bin/bash
-
+USERID=$(id -u)
 DATE=$(date +%F)
 SCRIPT_NAME=$0
 LOGFILE=/tmp/$SCRIPT_NAME/$DATE.log
@@ -19,10 +19,10 @@ N="\e[0m"
 VALIDATE(){
     if [ $1 -ne 0 ]
      then
-       echo -e "$2...$R FAILURE $N"
+       echo -e "$2 ...$R FAILURE $N"
        exit 1
      else
-       echo -e "$2...$G SUCCESS $N"
+       echo -e "$2 ...$G SUCCESS $N"
     fi
 }
 
@@ -35,7 +35,7 @@ do
     exit 1
   else
     echo "INFO: you are root user"
- fi
+
  yum install $i -y
  VALIDATE $? "Installation of $@"
 done
