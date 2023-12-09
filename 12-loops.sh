@@ -11,9 +11,6 @@ USERID=$(id -u)
 DATE=$(date +%F)
 SCRIPT_NAME=$0
 LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
-#DATE=$(date +%F)
-#SCRIPT_NAME=$0
-#LOGFILE=/tmp/$SCRIPT_NAME/$DATE.log
 
 R="\e[31m"
 G="\e[32m"
@@ -45,12 +42,9 @@ do
  if rpm -q "$@" > /dev/null 2>&1; 
   then
     echo "$@ is already installed."
+    exit 1
   else
     echo "$@ is not installed. Installing..."
-    # Install the package here
-    sudo yum install -y "$@"  # For YUM
-    # or
-    # sudo dnf install -y "$package_name"  # For DNF
  fi
  yum install $i -y &>>$LOGFILE
  VALIDATE $? "Installation of $@"
