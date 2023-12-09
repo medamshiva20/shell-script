@@ -36,6 +36,6 @@ do
   else
     echo "INFO: you are root user"
  fi
- yum install $i -y &>>$LOGFILE
+ yum install $i -y
  VALIDATE $? "Installation of $@"
 done
