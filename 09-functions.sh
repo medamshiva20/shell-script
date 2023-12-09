@@ -1,6 +1,6 @@
 #!/bin/bash 
 USERID=$(id -u)
-DATE=$(date +%F-%H-%M-%S)
+DATE=$(date +%F)
 SCRIPT_NAME=$0
 LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
 #This function should validate the previous command status and inform to user it is success or failure
