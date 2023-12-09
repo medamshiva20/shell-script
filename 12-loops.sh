@@ -24,10 +24,10 @@ VALIDATE(){
  #$1 --> It will receive the argument1
  if [ $1 -ne 0 ]
   then 
-      echo -e "$@ ...$R FAILURE $N"
+      echo -e "$2 ...$R FAILURE $N"
       exit 1
   else
-      echo -e "$@ ...$G SUCCESS $N"
+      echo -e "$2 ...$G SUCCESS $N"
  fi
 }
 
@@ -47,7 +47,7 @@ do
     echo -e "$@ ...$Y are already installed $N"
     exit 1
   else
-    echo "Packages are not installed. Installing..."
+    echo "$@ are not installed. Installing..."
  fi
  yum install $i -y &>>$LOGFILE
  VALIDATE $? "Installation of $@"
