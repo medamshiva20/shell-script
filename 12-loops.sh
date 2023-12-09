@@ -39,8 +39,8 @@ do
   then
     echo "ERROR:: Please run this script with root access"
     exit 1
-  else
-    echo "INFO: you are root user"
+  # else
+  #   echo "INFO: you are root user"
  fi
  yum install $i -y &>>$LOGFILE
  VALIDATE $? "Installation of $@"
