@@ -11,7 +11,6 @@ USERID=$(id -u)
 DATE=$(date +%F)
 SCRIPT_NAME=$0
 LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
-packages=$@
 
 
 R="\e[31m"
@@ -48,7 +47,7 @@ do
     echo -e "$@ ...$Y are already installed $N"
     exit 1
   else
-    echo "$packages are not installed. Installing..."
+    echo "Packages are not installed. Installing..."
  fi
  yum install $i -y &>>$LOGFILE
  VALIDATE $? "Installation of $@"
