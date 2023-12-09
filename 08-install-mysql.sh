@@ -14,5 +14,13 @@ if [ $USERID -ne 0 ]
 #  else
 #    echo "INFO: yor are root user"
 fi
+#It is our repsonsiblity again to check installation is success or not
+yum install mysqlll -y
 
-yum install mysql -y 
+if [ $? -ne 0 ]
+ then
+      echo "Installation of mysql is error"
+      exit 1
+ else
+      echo "Installation of mysql is success"
+fi
