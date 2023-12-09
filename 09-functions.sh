@@ -9,6 +9,7 @@ VALIDATE(){
       exit 1
   else
       echo "Installation is ...SUCCESS"
+ fi
 }
 
 if [ $USERID -ne 0 ]
@@ -23,3 +24,4 @@ yum install mysql -y
 VALIDATE $?
 
 yum install postfix -y 
+VAILDATE $?
