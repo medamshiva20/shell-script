@@ -3,7 +3,7 @@ USERID=$(id -u)
 #This function should validate the previous command status and inform to user it is success or failure
 VALIDATE(){
  #$1 --> It will receive the argument1
- if [ $? -ne 0 ]
+ if [ $1 -ne 0 ]
   then 
       echo "$2 ...FAILURE"
       exit 1
