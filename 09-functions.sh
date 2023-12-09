@@ -1,5 +1,8 @@
 #!/bin/bash 
 USERID=$(id -u)
+DATE=$(date +%F-%H-%M-%S)
+SCRIPT_NAME=$0
+LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
 #This function should validate the previous command status and inform to user it is success or failure
 VALIDATE(){
  #$1 --> It will receive the argument1
@@ -20,8 +23,8 @@ if [ $USERID -ne 0 ]
        echo "INFO: you are root user"
 fi
 
-yum install mysql -y 
+yum install mysql -y &>>$LOGFILE
 VALIDATE $? "Installation of Mysql"
 
-yum install postfix -y 
+yum install postfix -y &>>$LOGFILE
 VALIDATE $? "Installation of postfix"
