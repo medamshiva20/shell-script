@@ -29,6 +29,7 @@ VALIDATE(){
 #All args are in $@
 for i in $@
 do
+
  if [ $USERID -ne 0 ]
   then
     echo "ERROR:: Please run this script with root access"
@@ -38,4 +39,5 @@ do
 
  yum install $i -y
  VALIDATE $? "Installation of $@"
+
 done
