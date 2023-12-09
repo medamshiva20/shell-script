@@ -11,6 +11,8 @@ USERID=$(id -u)
 DATE=$(date +%F)
 SCRIPT_NAME=$0
 LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
+message_displayed=false
+
 
 R="\e[31m"
 G="\e[32m"
@@ -30,6 +32,21 @@ VALIDATE(){
  fi
 }
 
+
+check_and_install_package() {
+  if rpm -q "$@" > /dev/null 2>&1; 
+   then
+    echo -e "$@ ...$Y are already installed $N"
+    exit 1
+   else
+    echo "$@ are not installed. Installing..."
+    echo "$message_displayed"
+  fi
+}
+
+# Example usage
+check_and_install_package "$package_name"
+
 #All args are in $@
 for i in $@
 do
@@ -41,13 +58,7 @@ do
   # else
   #   echo "INFO: you are root user"
  fi
- if rpm -q "$@" > /dev/null 2>&1; 
-  then
-    echo -e "$@ ...$Y are already installed $N"
-    exit 1
-  else
-    echo "$@ are not installed. Installing..."
- fi
+ 
  yum install $i -y &>>$LOGFILE
  VALIDATE $? "Installation of $@"
 done
