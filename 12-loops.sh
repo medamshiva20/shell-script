@@ -13,17 +13,19 @@ USERID=$(id -u)
 #LOGFILE=/tmp/$SCRIPT_NAME/$DATE.log
 
 R="\e[31m"
-G="\e\[32m"
+G="\e[32m"
 N="\e[0m"
 
+#This function should validate the previous command status and inform to user it is success or failure
 VALIDATE(){
-    if [ $1 -ne 0 ]
-     then
-       echo -e "$2 ...$R FAILURE $N"
-       exit 1
-     else
-       echo -e "$2 ...$G SUCCESS $N"
-    fi
+ #$1 --> It will receive the argument1
+ if [ $1 -ne 0 ]
+  then 
+      echo -e "$2 ...$R FAILURE $N"
+      exit 1
+  else
+      echo -e "$2 ...$G SUCCESS $N"
+ fi
 }
 
 #All args are in $@
