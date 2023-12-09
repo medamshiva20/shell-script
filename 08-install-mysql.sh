@@ -10,8 +10,9 @@ USERID=$(id -u)
 if [ $USERID -ne 0 ]
  then
    echo "ERROR:: Please run this script with root access"
- else
-   echo "INFO: yor are root user"
+   exit 1
+#  else
+#    echo "INFO: yor are root user"
 fi
 
-yum install git -y
+yum install mysql
