@@ -36,8 +36,7 @@ do
     exit 1
   else
     echo "INFO: you are root user"
-
+ fi
  yum install $i -y
  VALIDATE $? "Installation of $@"
-
 done
