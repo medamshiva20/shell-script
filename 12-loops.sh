@@ -14,7 +14,9 @@ LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
 
 R="\e[31m"
 G="\e[32m"
+Y="\e[33m"
 N="\e[0m"
+
 
 #This function should validate the previous command status and inform to user it is success or failure
 VALIDATE(){
@@ -41,10 +43,10 @@ do
  fi
  if rpm -q "$@" > /dev/null 2>&1; 
   then
-    echo "$@ is already installed."
+    echo -e "$@ ...$Y are already installed $N"
     exit 1
   else
-    echo "$@ is not installed. Installing..."
+    echo "$@ are not installed. Installing..."
  fi
  yum install $i -y &>>$LOGFILE
  VALIDATE $? "Installation of $@"
