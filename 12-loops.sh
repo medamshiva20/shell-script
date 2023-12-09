@@ -42,6 +42,16 @@ do
   # else
   #   echo "INFO: you are root user"
  fi
+ if rpm -q "$@" > /dev/null 2>&1; 
+  then
+    echo "$@ is already installed."
+  else
+    echo "$@ is not installed. Installing..."
+    # Install the package here
+    sudo yum install -y "$@"  # For YUM
+    # or
+    # sudo dnf install -y "$package_name"  # For DNF
+ fi
  yum install $i -y &>>$LOGFILE
  VALIDATE $? "Installation of $@"
 done
