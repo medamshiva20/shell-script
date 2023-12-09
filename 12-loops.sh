@@ -11,7 +11,7 @@ USERID=$(id -u)
 DATE=$(date +%F)
 SCRIPT_NAME=$0
 LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
-
+packages=$@
 
 
 R="\e[31m"
@@ -42,13 +42,13 @@ do
   # else
   #   echo "INFO: you are root user"
  fi
- 
+
  if rpm -q "$@" > /dev/null 2>&1; 
   then
     echo -e "$@ ...$Y are already installed $N"
     exit 1
   else
-    echo "$@ are not installed. Installing..."
+    echo "$packages are not installed. Installing..."
  fi
  yum install $i -y &>>$LOGFILE
  VALIDATE $? "Installation of $@"
