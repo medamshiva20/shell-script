@@ -9,8 +9,9 @@
 #!/bin/bash
 USERID=$(id -u)
 DATE=$(date +%F)
+LOGSDIR=/home/centos/shellscript-logs
 SCRIPT_NAME=$0
-LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
+LOGFILE=/tmp/$LOGSDIR/$SCRIPT_NAME-$DATE.log
 
 
 R="\e[31m"
@@ -18,6 +19,11 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+if [ $USERID -ne 0 ];
+then
+    echo -e "$R ERROR:: Please run this script with root access $N"
+    exit 1
+fi
 
 #This function should validate the previous command status and inform to user it is success or failure
 VALIDATE(){
@@ -34,21 +40,14 @@ VALIDATE(){
 #All args are in $@
 for i in $@
 do
- if [ $USERID -ne 0 ]
+  yum list installed $i &>>$LOGFILE
+  
+ if [ $? -ne 0 ]
   then
-    echo "ERROR:: Please run this script with root access"
-    exit 1
-  # else
-  #   echo "INFO: you are root user"
- fi
-
- if rpm -q "$@" > /dev/null 2>&1; 
-  then
-    echo -e "$@ ...$Y already installed $N"
-    exit 1
+    echo "$i is not installed, let's install it"
+    yum install $i -y &>>$LOGFILE
+    VALIDATE $? "$i"
   else
-    echo "$@ not installed. Installing..."
+     echo "$Y $i is already installed $N"
  fi
- yum install $i -y &>>$LOGFILE
- VALIDATE $? "Installation of $@"
 done
