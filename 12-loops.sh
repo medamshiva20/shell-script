@@ -44,10 +44,10 @@ do
 
  if rpm -q "$@" > /dev/null 2>&1; 
   then
-    echo -e "$@ ...$Y are already installed $N"
+    echo -e "$@ ...$Y already installed $N"
     exit 1
   else
-    echo "$@ are not installed. Installing..."
+    echo "$@ not installed. Installing..."
  fi
  yum install $i -y &>>$LOGFILE
  VALIDATE $? "Installation of $@"
