@@ -32,9 +32,9 @@ do
 #    then
 #       message+="HIGH DISK USAGE ON $partition: $usage\n"
 #   fi
-  #echo "output: $line"
+  echo "output: $partition and $usage"
 done <<< $DISK_USAGE
 
-echo -e "message: $message"
+#echo -e "message: $message"
 
 
