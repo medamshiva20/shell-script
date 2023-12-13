@@ -9,7 +9,7 @@ LOGFILE_DIRECTORY=/tmp
 DATE=$(date +%F:%H:%M:%S)
 SCRIPT_NAME=$0
 LOG_FILE=$LOGFILE_DIRECTORY/$SCRIPT_NAME-$DATE.log
-message=""
+#message=""
 
 R="\e[31m"
 G="\e[32m"
