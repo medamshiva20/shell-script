@@ -30,12 +30,12 @@ do
   #now you need to check whether it is more than threshold or not
 if [ $usage -gt $DISK_USAGE_THRESHOLD ]
   then 
-     message="HIGH DISK USAGE ON $partition : $usage"
+     message+="HIGH DISK USAGE ON $partition : $usage\n"
 fi
-  echo "message : $message"
+  #echo "message : $message"
   #echo "output: $partition and $usage"
 done <<< $DISK_USAGE
 
-#echo -e "message: $message"
+echo -e "message: $message"
 
 
