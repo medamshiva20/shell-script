@@ -6,7 +6,9 @@
 
 variable1=$1
 
-echo "Stirng name is: ${#variable1}"
+echo "String name is: $variable1"
+
+echo "Stirng count is: ${#variable1}"
 
 # str="$variable1"
 # n=0
