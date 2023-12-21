@@ -8,7 +8,7 @@ variable1=$1
 
 echo "String name is: $variable1"
 echo "Stirng count is: ${#variable1}"
-echo "$variable1" | awk ' {print toupper ($0)}'
+echo "$variable1" | awk '{print toupper ($0)}'
 
 # str="$variable1"
 # n=0
