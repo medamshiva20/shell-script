@@ -12,5 +12,5 @@ str="$variable1"
 n=0
 while read -n1 character; do
     n=$((n+1)); 
-done < <(echo -n "$str")
+done <<< (echo -n "$str")
 echo "Length of the string is : $n "
