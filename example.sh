@@ -4,7 +4,7 @@
 
 #!/bin/bash 
 
-variable1=Hello World
+variable1=HelloWorld
 
 echo "Stirng name is: ${#variable1}"
 
