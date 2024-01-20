@@ -7,7 +7,7 @@ then
 fi
 
 
-yum install mysqlll -y
+yum install mysql -y
 
 if [ $? -ne 0 ]
  then
@@ -16,3 +16,12 @@ if [ $? -ne 0 ]
  else
    echo "SUCCESS ... Installation of mysql"
 fi
+
+yum install nginxx -y
+
+if [ $? -ne 0 ]
+ then
+   echo "FAILURE ... Installation of nginx"
+   exit 127
+ else
+   echo "SUCCESS ... Installation of nginx"
