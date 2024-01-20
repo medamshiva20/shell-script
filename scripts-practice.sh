@@ -4,7 +4,7 @@ USER_ID=$(id -a)
 LOG_DIR=/home/centos/shell-script/scriptlog
 SCRIPT_NAME=$0
 DATE=$(date +%F)
-LOG_FILE=$LOG_DIR-$SCRIPT_NAME-$DATE
+LOG_FILE=$LOG_DIR-$SCRIPT_NAME-$DATE.log
 
 R="\e[31m"
 G="\e[32m"
