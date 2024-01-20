@@ -3,7 +3,7 @@
 # implement colors
 # implement validations
 # implement validations through functions
-# your script should check package is already installed or not, if already installed print yellow color
+# your script should check package is already installed or not, if already installed print yellow colour
 # if installed just print package is alredy installed, it should not run install command
 
 #!/bin/bash
