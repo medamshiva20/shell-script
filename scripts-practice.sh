@@ -18,7 +18,8 @@ if [ $USER_ID -ne 0 ]
    echo "INFO: Script is running with root access"
 fi
 
-VALIDATE()
+VALIDATE(){
+
 if [ $? -ne 0 ]
  then
   echo "$2 ...$R FAILURE $N"
@@ -26,6 +27,8 @@ if [ $? -ne 0 ]
  else
   echo "$2 ... $G SUCCESS $N"
 fi
+
+}
 
 yum install mysql -y
 VALIDATE $? "Installation of mysql" >>$LOG_FILE
