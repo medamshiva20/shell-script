@@ -4,6 +4,7 @@ USER_ID=$(id -a)
 LOG_DIR=/home/centos/shell-script/scriptlog
 SCRIPT_NAME=$0
 DATE=$(date +%F)
+LOG_FILE=$LOG_DIR-$SCRIPT_NAME-$DATE
 
 R="\e[31m"
 G="\e[32m"
@@ -29,14 +30,14 @@ fi
 
 for i in $@
 do
-yum list installed $i 
+yum list installed $i >>$LOG_FILE
 if [ $? -ne 0 ]
  then
   echo "$i packages are not installed let's do install"
-  yum install $i -y
+  yum install $i -y >>$LOG_FILE
  else
    echo -e "$Y ... $i package is already installed"
 fi
 done
 
-VALIDATE $? "$i is installed"
+VALIDATE $? "$i is installed" >>$LOG_FILE
