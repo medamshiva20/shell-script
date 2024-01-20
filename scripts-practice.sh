@@ -25,3 +25,4 @@ if [ $? -ne 0 ]
    exit 127
  else
    echo "SUCCESS ... Installation of nginx"
+fi
