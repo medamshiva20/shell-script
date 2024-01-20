@@ -9,17 +9,8 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 
-
-if [ $USER_ID -ne 0 ]
- then
-   echo "ERROR: Please run script with root access"
-   exit 126
- else
-   echo "INFO: Script is running with root access"
-fi
-
 VALIDATE(){
-
+    
 if [ $1 -ne 0 ]
  then
   echo "$2 ...$R FAILURE $N"
@@ -29,6 +20,16 @@ if [ $1 -ne 0 ]
 fi
 
 }
+
+if [ $USER_ID -ne 0 ]
+ then
+   echo "ERROR: Please run script with root access"
+   exit 126
+ else
+   echo "INFO: Script is running with root access"
+fi
+
+
 
 yum install mysql -y >>$LOG_FILE
 VALIDATE $? "Installation of mysql" >>$LOG_FILE
