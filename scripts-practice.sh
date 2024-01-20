@@ -20,7 +20,7 @@ fi
 
 VALIDATE(){
 
-if [ $? -ne 0 ]
+if [ $1 -ne 0 ]
  then
   echo "$2 ...$R FAILURE $N"
   exit 1
@@ -30,8 +30,8 @@ fi
 
 }
 
-yum install mysql -y
+yum install mysql -y >>$LOG_FILE
 VALIDATE $? "Installation of mysql" >>$LOG_FILE
 
-yum install postfix -y
+yum install postfix -y >>$LOG_FILE
 VALIDATE $? "Installation of postfix" >>$LOG_FILE
