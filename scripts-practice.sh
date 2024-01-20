@@ -17,7 +17,7 @@ if [ $? -ne 0 ]
    echo "SUCCESS ... Installation of mysql"
 fi
 
-yum install nginxx -y
+yum install nginx -y
 
 if [ $? -ne 0 ]
  then
