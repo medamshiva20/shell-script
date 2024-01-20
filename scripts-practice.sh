@@ -5,6 +5,7 @@ USERD_ID=$(id -u)
 if [ $USER_ID -ne 0 ]
  then
    echo "ERROR: Please run script with root access"
+   exit 126
  else
    echo "INFO: Script is running with root access"
 fi
