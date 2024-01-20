@@ -11,12 +11,12 @@ if [ $USER_ID -ne 0 ]
 fi
 
 VALIDATE()
-if [ $? -ne 0]
+if [ $? -ne 0 ]
  then
-  echo "$1 ... $2 FAILURE"
+  echo "$2 ... FAILURE"
   exit 1
  else
-  echo "$1 ... $2 SUCCESS"
+  echo "$2 ... SUCCESS"
 fi
 
 yum install mysql -y
