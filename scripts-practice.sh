@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-USERD_ID=$(id -u)
+USER_ID=$(id -u)
 DATE=$(date +%F)
 SCRIPT_NAME=$0
 LOG_FILE=/tmp/$SCRIPT_NAME-$DATE
