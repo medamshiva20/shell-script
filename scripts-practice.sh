@@ -10,13 +10,13 @@ G="\e[32m"
 N="\e[0m"
 
 VALIDATE(){
-    
+
 if [ $1 -ne 0 ]
  then
-  echo "$2 ...$R FAILURE $N"
+  echo -e "$2 ...$R FAILURE $N"
   exit 1
  else
-  echo "$2 ... $G SUCCESS $N"
+  echo -e "$2 ... $G SUCCESS $N"
 fi
 
 }
@@ -32,7 +32,7 @@ fi
 
 
 yum install mysql -y >>$LOG_FILE
-VALIDATE $? "Installation of mysql" >>$LOG_FILE
+VALIDATE $? "Installation of mysql"
 
 yum install postfix -y >>$LOG_FILE
-VALIDATE $? "Installation of postfix" >>$LOG_FILE
+VALIDATE $? "Installation of postfix"
