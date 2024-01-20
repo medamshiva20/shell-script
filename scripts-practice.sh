@@ -37,6 +37,6 @@ if [ $? -ne 0 ]
   yum install $i -y >>$LOG_FILE
   VALIDATE $? "$i"
  else
-   echo -e "$Y $i package is already installed"
+   echo -e "$Y $i package is already installed $N"
 fi
 done
