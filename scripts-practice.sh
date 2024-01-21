@@ -1,30 +1,19 @@
 #!/bin/bash 
 
-USER_ID=$(id -u)
-LOGFILE_DIRECTORY=/TMP
-SCRIPT_NAME=$0
-DATE=$(date +%F)
-LOG_FILE=$LOGFILE_DIRECTORY/$SCRIPT_NAME-$DATE.log
-message=""
+NAMES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web")
+INSTANCE_TYPE=""
+AMI_ID=ami-0f3c7d07486cad139
+SECURITY_GROUP_ID=sg-005b676c6b9725e11
 
-R="\e[31m"
-G="\e[32m"
-N="\e[0m"
-Y="\e[33m"
-
-DISK_USAGE=$(df -h | grep -vE 'tmpfs|Filesystem')
-DISK_USAGE_THRESHOLD=1
-
-while IFS= read line
-do 
-  usage=$(echo $line | awk {'print $5'} | cut -d % -f1)
-  partition=$(echo $line | awk {'print $1'})
-  #echo "Usage is : $usage"
-  #echo "Partition is : $partition"
-  if [ $usage -gt $DISK_USAGE_THRESHOLD ]
+for i in "${NAMES[@]}"
+do
+  if [ $i == "mongodb" || $i == "mysql" ]
    then
-     message+="HIGH DISK USAGE ON $partition:$usage"
+     INSTANCE_TYPE="t3.medium"
+   else
+     INSTANCE_TYPE="t2.micro"
   fi
-done <<< $DISK_USAGE
-
-echo "Message: $message"
+  echo "creating $i instance"
+  IP_ADDRESS=$(aws ec2 run-instances --image-id $AMI_ID  --instance-type $INSTANCE_TYPE --security-group-ids $SECURITY_GROUP_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" | jq -r '.Instances[0].PrivateIpAddress')
+  echo "Instance $i created:$IP_ADDRESS"
+done
