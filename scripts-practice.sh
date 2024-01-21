@@ -27,3 +27,4 @@ do
   fi
 done <<< $DISK_USAGE
 
+echo "Message: $message"
