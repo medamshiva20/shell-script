@@ -8,5 +8,5 @@ variable1=$1
 
 echo "String name is: $variable1"
 #echo "Stirng count is: ${#variable1}"
-echo "String length is : $#"
+echo "String length is : ${#variable}"
 echo "$variable1" | awk '{print toupper ($0)}'
