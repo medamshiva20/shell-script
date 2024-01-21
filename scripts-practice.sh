@@ -16,7 +16,7 @@ DISK_USAGE_THRESHOLD=1
 
 while IFS= read line
 do 
-  usage=$(echo $line | awk {'print $6'} | cut -d % -f1)
+  usage=$(echo $line | awk {'print $5'} | cut -d % -f1)
   partition=$(echo $line | awk {'print $1'})
   echo "Usage is : $usage"
   echo "Partition is : $partition"
