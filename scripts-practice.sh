@@ -1,42 +1,35 @@
 #!/bin/bash 
-
-USER_ID=$(id -a)
-LOG_DIR=/home/centos/shell-script/scriptlog
-SCRIPT_NAME=$0
+USERID=$(id -u)
 DATE=$(date +%F)
-LOG_FILE=$LOG_DIR-$SCRIPT_NAME-$DATE.log
+SCRIPT_NAME=$0
+LOGFILE=/tmp/$SCRIPT_NAME-$DATE.log
 
 R="\e[31m"
 G="\e[32m"
 N="\e[0m"
-Y="\e[33m"
 
+#This function should validate the previous command status and inform to user it is success or failure
 VALIDATE(){
-    if [ $1 -ne 0 ]
-     then
-      echo -e "$2 ... $R FAILURE $N"
-     else
-      echo -e "$2 ... $G SUCCESS $N"
-    fi
+ #$1 --> It will receive the argument1
+ if [ $? -ne 0 ] # Here we should use $1 or $? it will give same result
+  then 
+      echo -e "Installation of Mysql ...$R FAILURE $N"
+      exit 1
+  else
+      echo -e "Installation of postfix ...$G SUCCESS $N"
+ fi
 }
 
-if [ $USER_ID -ne 0 ]
- then
-   echo "ERROR: Please script with root access"
-   exit 1
- else
-   echo "INFO: script is running with root user"
+if [ $USERID -ne 0 ]
+  then
+       echo "ERROR:: Please run this script with root access"
+       exit 1
+  else
+       echo "INFO: you are root user"
 fi
 
-for i in $@
-do
-yum list installed $i >>$LOG_FILE
-if [ $? -ne 0 ]
- then
-  echo "$i packages are not installed let's do install"
-  yum install $i -y >>$LOG_FILE
-  VALIDATE $? "$i"
- else
-   echo -e "$Y $i package is already installed $N"
-fi
-done
+yum install mysql -y &>>$LOGFILE
+VALIDATE 
+
+yum install postfix -y &>>$LOGFILE
+VALIDATE  
