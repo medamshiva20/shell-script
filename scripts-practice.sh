@@ -1,6 +1,5 @@
 #!/bin/bash
 
-instance_name=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web")  # Replace with the actual name of your instance
 NAMES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web")
 INSTANCE_TYPE=""
 IMAGE_ID=ami-03265a0778a880afb
@@ -8,19 +7,15 @@ SECURITY_GROUP_ID=sg-001887f7841106c09
 DOMAIN_NAME=sivadevops.website
 
 # if mysql or mongodb instance_type should be t3.medium , for all others it is t2.micro
-
 for i in "${NAMES[@]}"
 do 
-
-
-# Check if instance with given name exists
-instance_id=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${instance_name[@]}" --query "Reservations[*].Instances[*].InstanceId" --output text)
-
-    if [ -n "$instance_id" ]; 
+    # Check if instance with given name exists
+    instance_id=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=$NAMES" --query "Reservations[*].Instances[*].InstanceId" --output text)
+    if [ -n "$instance_id" ]
     then
-    echo "Instance with Name '${instance_name[@]}' exists.Instance ID: $instance_id"
+    echo "Instance with Name '$NAMES' exists.Instance ID: $instance_id"
     else
-    echo "Instance with Name '$instance_name[@]}' does not exist, Let's creating"
+    echo "Instance with Name '$NAMES' does not exist, Let's creating"
     fi
 
     if [[ $i == "mongodb" || $i == "mysql" ]]
