@@ -23,7 +23,7 @@ do
   #echo "Partition is : $partition"
   if [ $usage -gt $DISK_USAGE_THRESHOLD ]
    then
-     message+="HIGH DISK USAGE ON $partition\n : $usage"
+     message+="HIGH DISK USAGE ON $partition : $usage"
   fi
 done <<< $DISK_USAGE
 
