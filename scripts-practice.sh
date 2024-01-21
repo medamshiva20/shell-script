@@ -14,13 +14,13 @@ do
 
 
 # Check if instance with given name exists
-instance_id=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=$instance_name" --query "Reservations[*].Instances[*].InstanceId" --output text)
+instance_id=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${instance_name[@]}" --query "Reservations[*].Instances[*].InstanceId" --output text)
 
     if [ -n "$instance_id" ]; 
     then
-    echo "Instance with Name '$instance_name' exists.Instance ID: $instance_id"
+    echo "Instance with Name '${instance_name[@]}' exists.Instance ID: $instance_id"
     else
-    echo "Instance with Name '$instance_name' does not exist, Let's creating"
+    echo "Instance with Name '$instance_name[@]}' does not exist, Let's creating"
     fi
 
     if [[ $i == "mongodb" || $i == "mysql" ]]
