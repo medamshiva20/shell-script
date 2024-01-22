@@ -1,9 +1,9 @@
 #!/bin/bash 
 
-log_location=/home/centos/app-logs/
+log_location=/home/centos/shell-script/app-logs
 noofdays=+1
 cd $log_location
-for zipfile in `find . -type f \(-name "log_" -o -name "log-" -name "log." \) printf "%f\n"`
+for zipfile in `find . -name "*.log" -type f -printf "%f\n"`
 do
   gzip $zipfile
   wait $!
