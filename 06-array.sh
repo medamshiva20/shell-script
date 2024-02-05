@@ -8,4 +8,4 @@ echo "First Person: ${PERSONS[0]}"
 
 echo "All Persons: ${PERSONS[@]}"
 
-echo "Count of index: ${#PERSONS}"
+echo "Count of index: ${PERSONS[#]}"
