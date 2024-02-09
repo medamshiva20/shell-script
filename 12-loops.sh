@@ -35,7 +35,7 @@ VALIDATE(){
 }
 
 # all args are in $@
-for i in $@
+for i in $@ 
 do
     yum list installed $i &>>$LOGFILE
     if [ $? -ne 0 ]
